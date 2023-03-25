@@ -79,7 +79,7 @@ expensedisplay.forEach((items) => {
             <td>${items.date} </td>
             <td>${items.description} </td>
             <td>${items.type} </td>
-            <td>${items.amount} </td>
+            <td>₦ ${items.amount} </td>
             <td>
                 <button type="button" class="delete-entry" onClick="del()">&#10005</button>
             </td>
@@ -105,6 +105,7 @@ function del() {
 
 function calc() {
     let total = JSON.parse(localStorage.getItem("expenseTracker"))
+   
 
     return total.reduce((acc, item, i) =>{
         // let income = i
@@ -121,7 +122,51 @@ function calc() {
 }
 console.log(calc())
 
-let total = document.querySelector('span').textContent = calc()
+let total = document.querySelector('span').textContent = `₦ ${calc()}`
+
+function incalc() {
+    let income = JSON.parse(localStorage.getItem("expenseTracker"))
+    let incomedetails = income.filter(received)
+    console.log(incomedetails)
+    // let type = document.querySelector('.input-type').value
+    // let income = type.income
+    // if(incomeTotal === income) {
+    //     console.log(type.income)
+    //     incomeTotal.map(acc  => {
+    //         return acc ++
+    //     },0)
+        
+    //     return incomeTotal;
+    // }
+
+    function received(income) {
+        return income == (type.income)
+    }
+
+    // return incomedetails.reduce((acc, item) => {
+    //     return acc += item.amount
+    // },0)
+}
+incalc()
+// console.log(incalc())
+
+let incomed = document.querySelector('.incomed').textContent = `₦ ${incalc()}`
+
+function incalc() {
+    let incomeTotal = JSON.parse(localStorage.getItem("expenseTracker"))
+    let type = document.querySelector('.input-type').value
+    let income = type.income
+    if(incomeTotal === income) {
+        console.log(type.income)
+        incomeTotal.map(acc  => {
+            return acc ++
+        },0)
+        
+        return incomeTotal;
+    }
+}
+
+let expensed = document.querySelector('.expense').textContent = `₦ ${incalc()}`
 
 
 

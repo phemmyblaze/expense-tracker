@@ -14,7 +14,7 @@
         <h1>Expense tracker</h1>
         <table class="budget-tracker">
             <thead>
-                <tr>
+                <tr class="entries">
                     <th>Date</th>
                     <th>Description</th>
                     <th>Type</th>
@@ -32,6 +32,7 @@
                     </td>
                     <td>
                         <select class="input input-type">
+                            <option value="">select</option>
                             <option value="income">Income</option>
                             <option value="expense">Expense</option>
                         </select>
@@ -46,12 +47,6 @@
                     
                 </tr>
             </tbody>
-            <tbody>
-                <tr>
-                    
-                </tr>
-            </tbody>
-
             
         </table>
     </div>
@@ -59,18 +54,31 @@
     <div class="container">
         <table id="details">
             <thead class="items">
-                <tr>
+                <tr class="frod">
                     <th>Date</th>
                     <th>Description</th>
                     <th>Type</th>
                     <th>Amount</th>
                 </tr>
             </thead>
+           
+        </table>
 
-            <tfoot>
+        <table class="footer">
+            <tfoot class="tre">
                 <tr>
                     <td colspan="5" class="summary">
                         <strong>Totals <span>0.00</span></strong>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="5" class="summary">
+                        <strong>Income <span class="incomed">0.00</span></strong>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="5" class="summary">
+                        <strong>Expense <span class="expense">0.00</span></strong>
                     </td>
                 </tr>
             </tfoot>

@@ -22,3 +22,50 @@ body {
     padding: 1rem;
     font-size: 2rem;
 }
+
+.input {
+ width: 100%;
+ border: none;
+ padding: 1.1rem 2rem;
+}
+
+.input-date {
+    margin-right: 6rem;
+}
+
+.new-entry {
+    padding: 1rem;
+}
+
+.new-entry:hover {
+    background-color: #000;
+    color: #fff;
+}
+
+.container {
+    margin: 0 auto;
+}
+
+#details {
+    width: 70rem;
+}
+
+.frod {
+    font-size: 2rem;
+}
+
+.footer {
+    border: 2px solid red;
+    margin-left: 3rem;
+    margin-top: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.tre {
+    display: flex;
+    /* justify-content: space-between;
+    align-items: center; */
+    gap: 10rem;
+}
