@@ -45,77 +45,65 @@ addBtn.addEventListener('click', function(e) {
 
         }
 
+        location.reload()
+
         
         
     }
     
 })
 
-window.onload = function() {
-    let getOnload = JSON.parse(localStorage.getItem("expenseTracker")) 
 
-    if(getOnload != null) {
-        localStorage.setItem("newExpenseTracker", JSON.stringify(getOnload))
 
-        let expenseTrackerChecker = JSON.parse(localStorage.getItem("newExpenseTracker"))
-
-        expenseTrackerChecker.forEach((item) => {
-            expenseDetails.push(item)
-        });
-
-        localStorage.removeItem("newExpenseTracker")
-    }
-}
 
 //display functionality
 
-let expensedisplay = JSON.parse(localStorage.getItem('expenseTracker'))
+function display () {
+    let expensedisplay = JSON.parse(localStorage.getItem('expenseTracker'))
 
-expensedisplay.forEach((items) => {
-    let tbody = document.createElement("tbody")
+    expensedisplay.forEach((items) => {
+        let tbody = document.createElement("tbody")
 
-    tbody.innerHTML = `
-        <tr> 
-            <td>${items.date} </td>
-            <td>${items.description} </td>
-            <td>${items.type} </td>
-            <td>₦ ${items.amount} </td>
-            <td>
-                <button type="button" class="delete-entry" onClick="del()">&#10005</button>
-            </td>
-        </tr>
-    `
-    // console.log(tbody)
-    document.getElementById('details').append(tbody)
+        tbody.innerHTML = `
+            <tr class="expense-details"> 
+                <td>${items.date} </td>
+                <td>${items.description} </td>
+                <td>${items.type} </td>
+                <td>₦ ${items.amount} </td>
+                <td>
+                    <button type="button" class="delete-entry" onClick="del(${items.id})">&#10005</button>
+                </td>
+            </tr>
+        `
+        // console.log(tbody)
+        document.getElementById('details').append(tbody)
 
-   
-})
-// let delBtn = document.querySelector('.delete-entry')
+    
+    })
+    
+}
+display()
 
-// delBtn.addEventListener('click', function(e) {
-//     e.preventDefault()
 
-//     console.log('deleted')
-// })
+function del(id) {
+    expenseDetails = expenseDetails.filter((items) =>{
+        console.log ('hello')
 
-function del() {
-    console.log('deleted')
+        return items.id != id
+    })
+
+    localStorage.setItem('expenseTracker', JSON.stringify(expenseDetails));
+    display()
+    location.reload()
 }
 
 
+////Calculating the total amount
 function calc() {
     let total = JSON.parse(localStorage.getItem("expenseTracker"))
    
 
     return total.reduce((acc, item, i) =>{
-        // let income = i
-        // // return acc += item.amount;
-        // if (acc === income) {
-        //     acc += item.amount
-        // } else if (acc === expense) {
-        //     acc -= item.amount
-        // }
-
         return acc += item.amount;
         
     },0)
@@ -124,30 +112,39 @@ console.log(calc())
 
 let total = document.querySelector('span').textContent = `₦ ${calc()}`
 
-function incalc() {
-    let income = JSON.parse(localStorage.getItem("expenseTracker"))
-    let incomedetails = income.filter(received)
-    console.log(incomedetails)
-    // let type = document.querySelector('.input-type').value
-    // let income = type.income
-    // if(incomeTotal === income) {
-    //     console.log(type.income)
-    //     incomeTotal.map(acc  => {
-    //         return acc ++
-    //     },0)
+// let incomes = JSON.parse(localStorage.getItem("expenseTracker"))
+// console.log(incomes)
+// let { income} = incomes.type
+// console.log(income)
+
+
+// function incalc() {
+//     let incomed = JSON.parse(localStorage.getItem("expenseTracker"))
+//     console.log(incomed)
+//     let {type: {income, expense}} = incomed
+//     console.log(income, expense)
+//     // let type = document.querySelector('.input-type').value
+//     // let income = type.income
+//     // return (incomeTotal === income) {
+//     //     console.log(type.income)
+//     //     incomeTotal.map(acc  => {
+//     //         return acc ++
+//     //     },0)
+
+//     //     console.log(incomeTotal)
         
-    //     return incomeTotal;
-    // }
+        
+//     // }
 
-    function received(income) {
-        return income == (type.income)
-    }
+//     // function received(income) {
+//     //     return income == (type.income)
+//     // }
 
-    // return incomedetails.reduce((acc, item) => {
-    //     return acc += item.amount
-    // },0)
-}
-incalc()
+//     // return incomedetails.reduce((acc, item) => {
+//     //     return acc += item.amount
+//     // },0)
+// }
+// incalc()
 // console.log(incalc())
 
 let incomed = document.querySelector('.incomed').textContent = `₦ ${incalc()}`
@@ -170,3 +167,18 @@ let expensed = document.querySelector('.expense').textContent = `₦ ${incalc()}
 
 
 
+window.onload = function() {
+    let getOnload = JSON.parse(localStorage.getItem("expenseTracker")) 
+
+    if(getOnload != null) {
+        localStorage.setItem("newExpenseTracker", JSON.stringify(getOnload))
+
+        let expenseTrackerChecker = JSON.parse(localStorage.getItem("newExpenseTracker"))
+
+        expenseTrackerChecker.forEach((item) => {
+            expenseDetails.push(item)
+        });
+
+        localStorage.removeItem("newExpenseTracker")
+    }
+}

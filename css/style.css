@@ -48,6 +48,27 @@ body {
 
 #details {
     width: 70rem;
+    height: 13rem;
+    text-align: center;
+}
+
+.expense-details {
+    font-size: 2rem;
+    padding: 3rem;
+}
+
+.expense-details button {
+    padding: 1rem;
+    font-size: 1.8rem;
+    border: none;
+    border-radius: 1rem;
+    background: red;
+
+}
+
+.expense-details button:hover {
+    color: rgba(255 0 0);
+    background: rgba(0 0 255);
 }
 
 .frod {
